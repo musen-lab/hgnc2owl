@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+import sys
+import os
+import logging
+from argparse import ArgumentParser, RawTextHelpFormatter
+
+import hgnc2owl.pipeline
+
+
+logger = logging.getLogger("hgnc2owl")
+
+script_name = os.path.basename(os.path.realpath(sys.argv[0]))
+
+if __name__ == "__main__":
+    parser = ArgumentParser(formatter_class=RawTextHelpFormatter)
+    parser.add_argument("input_urls", nargs="+", help="One or more input file URLs")
+    parser.add_argument("-o", "--output", nargs="?", help="Output file")
+    parser.add_argument("-v", "--version", action="version",
+                        version="%(prog)s " + hgnc2owl.__version__)
+    args = parser.parse_args()
+
+    hgnc2owl.pipeline.run(args)
