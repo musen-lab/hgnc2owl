@@ -155,7 +155,7 @@ class HGNCOntology:
     def _get_gene_id(self, obj):
         hgnc_id = obj['hgnc_id']
         hgnc_numerical_id = hgnc_id.split(":")[1]
-        return self._iri(HGNC._NS + hgnc_numerical_id)
+        return self._iri("http://identifiers.org/hgnc/" + hgnc_numerical_id)
 
     def _dbxref(self, subject, values, comment):
         for value in values:
