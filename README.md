@@ -4,7 +4,7 @@ A Python tool to convert HGNC dataset to OWL format.
 
 ## Installation
 ```
-$ git clone https://github.com/johardi/hgnc2owl.git
+$ git clone https://github.com/musen-lab/hgnc2owl.git
 $ cd hgnc2owl
 $ pip install .
 ```
