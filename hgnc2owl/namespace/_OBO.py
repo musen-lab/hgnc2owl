@@ -1,5 +1,5 @@
 from rdflib.term import URIRef
-from cedar2ccf.namespace import DefinedNamespace, Namespace
+from hgnc2owl.namespace import DefinedNamespace, Namespace
 
 
 class OBO(DefinedNamespace):
