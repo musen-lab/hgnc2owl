@@ -6,3 +6,5 @@ build
 *.pyc
 
 _pycache_
+
+hgnc.owl
