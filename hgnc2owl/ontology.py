@@ -79,6 +79,8 @@ class HGNCOntology:
         self._annotation(gene_id, RDFS.label,
                          self._string(doc['symbol']))
         self._annotation(gene_id, SKOS.prefLabel,
+                         self._string(doc['symbol']))
+        self._annotation(gene_id, SKOS.altLabel,
                          self._string(doc['name']))
         self._annotation(gene_id, OBOINOWL.id,
                          self._string(doc['hgnc_id']))
@@ -173,7 +175,7 @@ class HGNCOntology:
 
     def _synonym(self, subject, values):
         for value in values:
-            self._annotation(subject, OBOINOWL.hasSynonym, self._string(value))
+            self._annotation(subject, SKOS.altLabel, self._string(value))
 
     def _prev_symbol(self, subject, values):
         for value in values:
