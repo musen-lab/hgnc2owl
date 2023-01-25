@@ -30,7 +30,7 @@ setup(name='hgnc2owl',
           'rdflib==5.0.0',
           'stringcase==1.2.0'
       ],
-      python_requires='>=3.5, <3.9',
+      python_requires='>=3.5, <4.0',
       test_suite='nose.collector',
       tests_require=['nose'],
       packages=find_packages(),
