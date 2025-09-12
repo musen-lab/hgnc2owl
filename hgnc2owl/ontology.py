@@ -84,8 +84,9 @@ class HGNCOntology:
                          self._string(doc['name']))
         self._annotation(gene_id, OBOINOWL.id,
                          self._string(doc['hgnc_id']))
-        self._annotation(gene_id, DCTERMS.dateAccepted,
-                         self._date(doc['date_approved_reserved']))
+        if 'date_approved_reserved' in doc:
+            self._annotation(gene_id, DCTERMS.dateAccepted,
+                             self._date(doc['date_approved_reserved']))
         self._annotation(gene_id, HGNC.status,
                          self._string(doc['status']))
         self._annotation(gene_id, HGNC.locus_group,
