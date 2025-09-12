@@ -11,8 +11,8 @@ $ pip install .
 
 ## Running command
 ```
-$ hgnc2owl http://ftp.ebi.ac.uk/pub/databases/genenames/hgnc/json/hgnc_complete_set.json \
-           http://ftp.ebi.ac.uk/pub/databases/genenames/hgnc/json/withdrawn.json \
+hgnc2owl http://storage.googleapis.com/public-download-files/hgnc/json/json/hgnc_complete_set.json \
+           http://storage.googleapis.com/public-download-files/hgnc/json/json/withdrawn.json \
            -o hgnc.owl
 ```
 
