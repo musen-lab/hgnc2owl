@@ -19,8 +19,8 @@ $(BUILD_DIR)/pro-markers.csv:
 		--create-dirs -o $@ --retry 4 --max-time 200; fi
 
 hgnc: $(BUILD_DIR)/pro-markers.csv
-	$(HGNC2OWL) http://ftp.ebi.ac.uk/pub/databases/genenames/hgnc/json/hgnc_complete_set.json \
-		http://ftp.ebi.ac.uk/pub/databases/genenames/hgnc/json/withdrawn.json \
+	$(HGNC2OWL) http://storage.googleapis.com/public-download-files/hgnc/json/json/hgnc_complete_set.json \
+		http://storage.googleapis.com/public-download-files/hgnc/json/json/withdrawn.json \
 		-o $@.tmp.owl && \
 	if [ $(EXTRAS) = true ]; then $(ROBOT) template --merge-before --input $@.tmp.owl \
 			--template $^ \
