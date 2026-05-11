@@ -1,0 +1,59 @@
+name: Build HGNC Release
+
+on:
+  schedule:
+    # 1st of each month at 06:00 UTC
+    - cron: "0 6 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Set up Java (for ROBOT)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install ROBOT
+        run: |
+          mkdir -p "$HOME/bin"
+          curl -L -o "$HOME/bin/robot.jar" \
+            https://github.com/ontodev/robot/releases/latest/download/robot.jar
+          curl -L -o "$HOME/bin/robot" \
+            https://raw.githubusercontent.com/ontodev/robot/master/bin/robot
+          chmod +x "$HOME/bin/robot"
+          echo "$HOME/bin" >> "$GITHUB_PATH"
+
+      - name: Install hgnc2owl
+        run: pip install .
+
+      - name: Build HGNC release
+        run: make hgnc
+
+      - name: Compute release tag
+        id: tag
+        run: echo "tag=v$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          name: HGNC Release ${{ steps.tag.outputs.tag }}
+          files: |
+            hgnc.owl
+            hgnc.owl.gz
