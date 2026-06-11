@@ -28,7 +28,8 @@ setup(name='hgnc2owl',
       classifiers=classifiers,
       install_requires=[
           'rdflib==5.0.0',
-          'stringcase==1.2.0'
+          'stringcase==1.2.0',
+          'requests'
       ],
       python_requires='>=3.5, <4.0',
       test_suite='nose.collector',
